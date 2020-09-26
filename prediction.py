@@ -1,5 +1,5 @@
 import requests
-BASE_URL = "http://127.0.0.1:5000"
+BASE_URL = "https://linearregression.azurewebsites.net/predicted"
 years_exp = {"YearsExperience": 8}
 response = requests.post("{}/predict".format(BASE_URL), json = years_exp)
 
