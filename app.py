@@ -3,6 +3,7 @@ import joblib
 import numpy as np
 import requests
 import json
+import os
 
 app = Flask(__name__)
 
@@ -11,15 +12,18 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
+
+regressor = joblib.load("model.pkl")
+
+
 @app.route("/predict", methods=['POST'])
 def predict():
-    if request.method=='POST':
-
-        regressor = joblib.load("C:\\Users\\Abdessamad\\PycharmProjects\\FlaskAppSalary\\model.pkl")
+    if request.method == 'POST':
+        regressor = joblib.load("model.pkl")
 
         data = dict(request.form.items())
 
-        years_of_experience = np.array(float(data["YearsExperience"])).reshape(-1,1)
+        years_of_experience = np.array(float(data["YearsExperience"])).reshape(-1, 1)
 
         prediction = regressor.predict(years_of_experience)
 
