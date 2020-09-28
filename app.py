@@ -11,7 +11,7 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
-@app.route("/predicted", methods=['POST'])
+@app.route("/predict", methods=['POST'])
 def predict():
     if request.method=='POST':
 
